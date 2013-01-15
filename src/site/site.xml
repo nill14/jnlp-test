@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="KITPMS">
+  <bannerLeft>
+    <name>KITPMS</name>
+    <src>http://maven.apache.org/images/apache-maven-project-2.png</src>
+    <href>http://maven.apache.org/</href>  
+  </bannerLeft>
+  <bannerRight>
+    <src>http://maven.apache.org/images/maven-small.gif</src>
+  </bannerRight>
+  <publishDate position="right"/>
+  <version position="right"/>
+  
+  <body>
+
+    <menu ref="reports"/>
+
+  </body>
+</project>

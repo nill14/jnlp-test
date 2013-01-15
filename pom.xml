@@ -1,0 +1,122 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>jnlp-test</groupId>
+	<artifactId>jnlp-test</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<properties>
+	</properties>
+
+	<build>
+		<sourceDirectory>src</sourceDirectory>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>maven-webstart-plugin</artifactId>
+					<version>1.0-beta-3</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>webstart-maven-plugin</artifactId>
+				<version>1.0-beta-3</version>
+				<executions>
+					<execution>
+						<id>jnlp</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jnlp</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+<!-- 					<workDirectory>${project.build.directory}/jnlp</workDirectory> -->
+
+					<!-- Set to true to exclude all transitive dependencies. Default is 
+						false. -->
+<!-- 					<excludeTransitive>false</excludeTransitive> -->
+
+					<!-- The path where the libraries are stored within the jnlp structure. 
+						not required. by default the libraries are within the working directory -->
+					<libPath>lib</libPath>
+					<codebase>${project.build.directory}/jnlp/lib</codebase>
+
+					<!-- [optional] transitive dependencies filter - if omitted, all transitive 
+						dependencies are included -->
+         <dependencies>
+          </dependencies>
+
+					<jnlp>
+						<inputTemplate>jnlp/templates/template.vm</inputTemplate>
+						<outputFile>test.jnlp</outputFile>
+						<mainClass>me.test.TestJnlp</mainClass>
+					</jnlp>
+
+
+
+					<!-- SIGNING -->
+					<!-- defining this will automatically sign the jar and its dependencies -->
+					<sign>
+						<keystore>${basedir}/jnlp/testKeys</keystore>
+						<storepass>secret</storepass>
+						<alias>jdc</alias>
+						<verify>true</verify>
+					</sign>
+
+					<!-- causes a version attribute to be output in each jar resource element, 
+						optional, default is false -->
+					<outputJarVersions>false</outputJarVersions>
+
+					<verbose>false</verbose>
+					<verifyjar>true</verifyjar>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.2</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.0.9</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<version>1.0.9</version>
+			<scope>runtime</scope>
+		</dependency>
+	</dependencies>
+	<url>file://D:/work/site</url>
+	
+	<distributionManagement>
+		<site>
+			<id>website</id>
+			<url>file://D:/work/site</url>
+		</site>
+	</distributionManagement>
+	
+	<name>JNLP-TEST</name>
+	<organization>
+		<name>Nobody Inc.</name>
+	</organization>
+</project>
