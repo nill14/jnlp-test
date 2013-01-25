@@ -14,8 +14,7 @@
 	<properties>
 		<!-- <jnlpCodebase>file:///C:/dev/workspace/typesafe/jnlp-test/target/jnlp/</jnlpCodebase> -->
 		<!-- <jnlpCodebase>http://localhost:8080/</jnlpCodebase> -->
-		<jnlpFile>launch.jnlp</jnlpFile>
-		<!-- <jnlpCodebase>${project.url}/jnlp</jnlpCodebase> -->
+		<jnlpCodebase>${siteUrl}/jnlp-webstart-site/webstart</jnlpCodebase>
 	</properties>
 
 	<build>
@@ -52,7 +51,6 @@
 								</jarResource>
 							</jarResources>
 						</jnlpFile>
-
 						<jnlpFile>
 							<templateFilename>template.vm</templateFilename>
 							<outputFilename>application2.jnlp</outputFilename>
@@ -67,7 +65,7 @@
 						</jnlpFile>
 
 					</jnlpFiles>
-
+					
 					<libPath>lib</libPath>
 					<codebase>${jnlpCodebase}</codebase>
 
@@ -143,6 +141,7 @@
 			<version>0.0.1-SNAPSHOT</version>
 			<scope>runtime</scope>
 		</dependency>
+
 	</dependencies>
 
 

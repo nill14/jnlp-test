@@ -12,9 +12,11 @@
 	</parent>
 
 	<properties>
-		<jnlpCodebase>file:///C:/dev/workspace/typesafe/jnlp-test/target/jnlp/</jnlpCodebase>
+			<jnlpCodebase>${siteUrl}/jnlp-webstart-site/webstart</jnlpCodebase>
+<!-- 		<jnlpCodebase>file:///C:/dev/workspace/typesafe/jnlp-test/target/jnlp/</jnlpCodebase> -->
 		<!-- <jnlpCodebase>http://localhost:8080/</jnlpCodebase> -->
 		<!-- <jnlpCodebase>${project.url}/jnlp</jnlpCodebase> -->
+		<jnlpFile>test.jnlp</jnlpFile>
 	</properties>
 
 	<build>
@@ -43,7 +45,7 @@
 
 					<jnlp>
 						<inputTemplate>src/main/jnlp/template.vm</inputTemplate>
-						<outputFile>test.jnlp</outputFile>
+						<outputFile>${jnlpFile}</outputFile>
 						<mainClass>me.test.TestJnlp1</mainClass>
 					</jnlp>
 
@@ -87,6 +89,22 @@
 		</resources>
 
 	</build>
+	
+	
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>webstart-maven-plugin</artifactId>
+				<version>1.0-beta-3</version>
+				<configuration>
+					<jnlpSourceDirectory>${project.build.directory}/${project.build.finalName}</jnlpSourceDirectory>
+					<siteJnlpFile>${jnlpFile}</siteJnlpFile>
+					<codebase>${jnlpCodebase}</codebase>
+				</configuration>
+			</plugin>
+		</plugins>
+	</reporting>
 
 	<dependencies>
 		<dependency>

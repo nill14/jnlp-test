@@ -33,10 +33,10 @@
 							<artifactItems>
 								<artifactItem>
 									<groupId>${project.groupId}</groupId>
-									<artifactId>jnlp-test-multi</artifactId>
+									<artifactId>jnlp-test-simple</artifactId>
 									<version>${project.version}</version>
 									<type>zip</type>
-									<classifier>webstart</classifier>
+<!-- 									<classifier>webstart</classifier> -->
 									<overWrite>true</overWrite>
 									<outputDirectory>${project.build.directory}/site/webstart</outputDirectory>
 								</artifactItem>
@@ -50,5 +50,6 @@
 
 		</plugins>
 	</build>
+
 
 </project>
