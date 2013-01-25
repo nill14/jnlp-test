@@ -4,7 +4,6 @@
     codebase="$jnlpCodebase"
     href="$outputFile">
   <information>
-  
 #if($project.Name)
     <title>$project.Name</title>
 #end
@@ -21,21 +20,15 @@
     <offline-allowed/>
 #end
   </information>
-  
 #if($allPermissions)
   <security>
      <all-permissions/>
   </security>
 #end
-
   <resources>
-    <j2se version="1.6+" initial-heap-size="512m" max-heap-size="512m" java-vm-args="-XX:MaxPermSize=128m"/>
+    <j2se version="$j2seVersion"/>
      $dependencies
-##     $extensions
-     <property name="logback.configurationFile" value="config.xml"/>
+     $extensions
   </resources>
-  <application-desc main-class="$mainClass">
-  	<argument>-version</argument>
-  	<argument>-help</argument>
-  </application-desc>
+  <application-desc main-class="$mainClass"/>
 </jnlp>

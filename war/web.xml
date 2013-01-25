@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<web-app>
-	<!-- jnlp file for Java Web Start -->
-	<mime-mapping>
-		<extension>jnlp</extension>
-		<mime-type>application/x-java-jnlp-file</mime-type>
-	</mime-mapping>
-</web-app> 

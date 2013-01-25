@@ -1,0 +1,102 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>jnlp-test-simple</artifactId>
+	<name>jnlp-simple</name>
+	<packaging>pom</packaging>
+
+	<parent>
+		<groupId>me.jnlp-test</groupId>
+		<artifactId>jnlp-test-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<properties>
+		<jnlpCodebase>file:///C:/dev/workspace/typesafe/jnlp-test/target/jnlp/</jnlpCodebase>
+		<!-- <jnlpCodebase>http://localhost:8080/</jnlpCodebase> -->
+		<!-- <jnlpCodebase>${project.url}/jnlp</jnlpCodebase> -->
+	</properties>
+
+	<build>
+
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>webstart-maven-plugin</artifactId>
+				<version>1.0-beta-3</version>
+				<executions>
+					<execution>
+						<id>jnlp</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>jnlp-inline</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<!-- resourcesDirectory does not work with resource filtering -->
+					<!-- <resourcesDirectory>src/main/resources</resourcesDirectory> -->
+					<workDirectory>${project.build.directory}/${project.build.finalName}</workDirectory>
+
+					<libPath>lib</libPath>
+					<codebase>${jnlpCodebase}</codebase>
+
+					<jnlp>
+						<inputTemplate>src/main/jnlp/template.vm</inputTemplate>
+						<outputFile>test.jnlp</outputFile>
+						<mainClass>me.test.TestJnlp1</mainClass>
+					</jnlp>
+
+					<sign>
+						<keystore>${basedir}/src/main/jnlp/testKeys</keystore>
+						<storepass>secret</storepass>
+						<alias>jdc</alias>
+						<verify>true</verify>
+					</sign>
+
+					<!-- <outputJarVersions>false</outputJarVersions> -->
+
+					<verbose>false</verbose>
+					<verifyjar>true</verifyjar>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+				<executions>
+					<execution>
+						<!-- pom packaging doesn't include resources packing -->
+						<id>process-resources</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>resources</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<targetPath>${project.build.directory}/${project.build.finalName}</targetPath>
+			</resource>
+		</resources>
+
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>me.jnlp-test</groupId>
+			<artifactId>jnlp-test1</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<scope>runtime</scope>
+		</dependency>
+	</dependencies>
+
+
+
+</project>

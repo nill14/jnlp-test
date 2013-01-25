@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="$encoding"?>
+<jnlp
+    spec="$jnlpspec"
+    codebase="$jnlpCodebase"
+    href="$jnlpFile">
+  <information>
+  
+#if($project.Name)
+    <title>$project.Name</title>
+#end
+#if($project.Organization.Name)
+    <vendor>$project.Organization.Name</vendor>
+#end
+#if($project.Url)
+    <homepage href="$project.Url"/>
+#end
+#if($project.Description)
+    <description>$project.Description</description>
+#end
+#if($offlineAllowed)
+    <offline-allowed/>
+#end
+  </information>
+  
+#if($allPermissions)
+  <security>
+     <all-permissions/>
+  </security>
+#end
+
+  <resources>
+    <j2se version="1.6+" initial-heap-size="512m" max-heap-size="512m" java-vm-args="-XX:MaxPermSize=128m"/>
+     $dependencies
+##     $extensions
+     <property name="logback.configurationFile" value="config.xml"/>
+  </resources>
+  <application-desc main-class="$mainClass">
+  	<argument>-version</argument>
+  	<argument>-help</argument>
+  </application-desc>
+</jnlp>

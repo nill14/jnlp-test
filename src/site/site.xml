@@ -1,19 +1,51 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<project name="KITPMS">
+
+<project name="Maven" xmlns="http://maven.apache.org/DECORATION/1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 http://maven.apache.org/xsd/decoration-1.0.0.xsd">
+
+	<!-- <skin> -->
+	<!-- <groupId>org.apache.maven.skins</groupId> -->
+	<!-- <artifactId>maven-fluido-skin</artifactId> -->
+	<!-- <version>1.3.0</version> -->
+	<!-- </skin> -->
+
+	<!-- <custom> -->
+	<!-- <fluidoSkin> -->
+	<!-- <topBarEnabled>true</topBarEnabled> -->
+	<!-- <sideBarEnabled>true</sideBarEnabled> -->
+	<!-- </fluidoSkin> -->
+	<!-- </custom> -->
+
   <bannerLeft>
-    <name>KITPMS</name>
-    <src>http://maven.apache.org/images/apache-maven-project-2.png</src>
-    <href>http://maven.apache.org/</href>  
+		<name>${project.name}</name>
+    <href>${project.url}</href>  
   </bannerLeft>
+  
   <bannerRight>
     <src>http://maven.apache.org/images/maven-small.gif</src>
   </bannerRight>
-  <publishDate position="right"/>
-  <version position="right"/>
   
-  <body>
+  <publishDate position="left"/>
+  <version position="left"/>
 
-    <menu ref="reports"/>
 
-  </body>
+
+	<body>
+		<links>
+			<item name="${project.name}" href="${project.url}" />
+			<item name="Webstart page" href="${siteUrl}/jnlp-webstart-site/webstart/index.html"/>
+		</links>
+
+		<menu ref="parent" />
+
+		<menu name="${project.name}">
+			<item name="Webstart page" href="${siteUrl}/jnlp-webstart-site/webstart/index.html"/>
+		</menu>
+
+		<menu ref="modules" />
+		<menu ref="reports" />
+
+
+	</body>
 </project>

@@ -2,26 +2,54 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>me.jnlp-test</groupId>
-	<artifactId>jnlp-test</artifactId>
+	<artifactId>jnlp-test-parent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
 
-	<name>JNLP-TEST</name>
-	<url>file://D:/work/site</url>
+	<name>Webstart Test Project</name>
+	<url>${siteUrl}</url>
 	<organization>
 		<name>Nobody Inc.</name>
 	</organization>
-
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<siteUrl>file:///D:/work/site/${project.version}</siteUrl>
 	</properties>
 
+	<modules>
+		<module>project1</module>
+		<module>project2</module>
+		<module>jnlp-test-simple</module>
+		<module>jnlp-test-multi</module>
+		<module>jnlp-webstart-site</module>
+	</modules>
+
+
+
 	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<!-- inherited config comes from pluginManagement -->
+				<inherited>false</inherited>
+				<configuration>
+					<siteDirectory>${project.basedir}/src/site</siteDirectory>
+				</configuration>
+			</plugin>
+		</plugins>
+
 		<pluginManagement>
 			<plugins>
 				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>maven-webstart-plugin</artifactId>
-					<version>1.0-beta-3</version>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>3.2</version> 
+					<configuration>
+						<siteDirectory>${project.parent.basedir}/src/site</siteDirectory>
+					</configuration>
 				</plugin>
+
 				<plugin>
 					<groupId>org.apache.tomcat.maven</groupId>
 					<artifactId>tomcat6-maven-plugin</artifactId>
@@ -32,20 +60,163 @@
 					<artifactId>tomcat7-maven-plugin</artifactId>
 					<version>2.0</version>
 				</plugin>
+				<plugin>
+					<groupId>org.mortbay.jetty</groupId>
+					<artifactId>jetty-maven-plugin</artifactId>
+					<version>8.1.8.v20121106</version>
+					<configuration>
+						<!-- mvn install jetty:run-war -->
+						<!-- <webApp>${project.build.directory}/${project.build.finalName}.war</webApp> -->
+						<stopPort>9966</stopPort>
+						<stopKey>foo</stopKey>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.3.2</version>
+					<configuration>
+						<source>1.6</source>
+						<target>1.6</target>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-project-info-reports-plugin</artifactId>
+					<version>2.6</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jxr-plugin</artifactId>
+					<version>2.3</version>
+					<configuration>
+						<sourceEncoding>UTF-8</sourceEncoding>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-report-plugin</artifactId>
+					<version>2.13</version>
+					<configuration>
+						<sourceEncoding>UTF-8</sourceEncoding>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-pmd-plugin</artifactId>
+					<version>2.7.1</version>
+					<configuration>
+						<aggregate>true</aggregate>
+						<sourceEncoding>UTF-8</sourceEncoding>
+						<targetJdk>1.6</targetJdk>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>jdepend-maven-plugin</artifactId>
+					<version>2.0-beta-2</version>
+					<configuration>
+						<sourceEncoding>UTF-8</sourceEncoding>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>findbugs-maven-plugin</artifactId>
+					<version>2.5.2</version>
+					<configuration>
+						<sourceEncoding>UTF-8</sourceEncoding>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>2.9</version>
+					<configuration>
+						<encoding>UTF-8</encoding>
+						<charset>UTF-8</charset>
+					</configuration>
+				</plugin>
+
 			</plugins>
+
 		</pluginManagement>
 
+
+	</build>
+
+
+	<reporting>
 		<plugins>
 			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>2.6</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>dependency-convergence</report>
+							<report>index</report>
+							<report>summary</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jxr-plugin</artifactId>
+				<version>2.3</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<sourceEncoding>UTF-8</sourceEncoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>2.13</version>
+				<configuration>
+					<sourceEncoding>UTF-8</sourceEncoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>2.7.1</version>
+				<configuration>
+					<aggregate>true</aggregate>
+					<sourceEncoding>UTF-8</sourceEncoding>
+					<targetJdk>1.6</targetJdk>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jdepend-maven-plugin</artifactId>
+				<version>2.0-beta-2</version>
+				<configuration>
+					<sourceEncoding>UTF-8</sourceEncoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>2.5.2</version>
+				<configuration>
+					<sourceEncoding>UTF-8</sourceEncoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<charset>UTF-8</charset>
 				</configuration>
 			</plugin>
 		</plugins>
-	</build>
+	</reporting>
+
+
 	<dependencies>
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -67,11 +238,10 @@
 		</dependency>
 	</dependencies>
 
-
 	<distributionManagement>
 		<site>
 			<id>website</id>
-			<url>${project.url}</url>
+			<url>${siteUrl}</url>
 		</site>
 	</distributionManagement>
 

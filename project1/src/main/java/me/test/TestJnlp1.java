@@ -11,9 +11,9 @@ import javax.swing.JLabel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
  
-public class TestJnlp {
+public class TestJnlp1 {
 	
-	private static final Logger log = LoggerFactory.getLogger(TestJnlp.class);
+	private static final Logger log = LoggerFactory.getLogger(TestJnlp1.class);
 	
   public static void main(String args[]) {
   	
@@ -23,7 +23,7 @@ public class TestJnlp {
   		log.info("args: {}", Arrays.toString(args));
   	}
   	
-    JFrame frame = new JFrame("Jnlp webstart test");
+    JFrame frame = new JFrame("Jnlp webstart test1");
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     JLabel label = new JLabel();
     Container content = frame.getContentPane();
