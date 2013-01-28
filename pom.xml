@@ -14,6 +14,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<siteUrl>file:///D:/work/site/${project.version}</siteUrl>
+		<autoVersionSubmodules>true</autoVersionSubmodules>
 	</properties>
 
 	<modules>
@@ -24,10 +25,23 @@
 		<module>jnlp-webstart-site</module>
 	</modules>
 
+	<scm>
+		<connection>scm:git:file://C:/dev/git/jnlp-test</connection>
+  </scm>
 
 
 	<build>
+
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<configuration>
+					<tagNameFormat>v@{project.version}</tagNameFormat>
+				</configuration>
+			</plugin>
+
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-site-plugin</artifactId>
@@ -44,7 +58,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-site-plugin</artifactId>
-					<version>3.2</version> 
+					<version>3.2</version>
 					<configuration>
 						<siteDirectory>${project.parent.basedir}/src/site</siteDirectory>
 					</configuration>
@@ -136,6 +150,12 @@
 						<encoding>UTF-8</encoding>
 						<charset>UTF-8</charset>
 					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>2.4</version>
 				</plugin>
 
 			</plugins>
@@ -235,6 +255,12 @@
 			<artifactId>logback-core</artifactId>
 			<version>1.0.9</version>
 			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-release-plugin</artifactId>
+			<version>2.4</version>
+			<type>maven-plugin</type>
 		</dependency>
 	</dependencies>
 
