@@ -27,7 +27,7 @@
 
 	<scm>
 		<connection>scm:git:file://C:/dev/git/jnlp-test</connection>
-  </scm>
+	</scm>
 
 
 	<build>
@@ -88,7 +88,7 @@
 
 				<plugin>
 					<artifactId>maven-compiler-plugin</artifactId>
-					<version>2.3.2</version>
+					<version>2.3.1</version>
 					<configuration>
 						<source>1.6</source>
 						<target>1.6</target>
@@ -175,8 +175,21 @@
 				<reportSets>
 					<reportSet>
 						<reports>
+							<report>cim</report>
+							<report>dependencies</report>
 							<report>dependency-convergence</report>
+							<report>dependency-info</report>
+							<report>dependency-management</report>
+							<report>distribution-management</report>
 							<report>index</report>
+							<report>issue-tracking</report>
+							<report>license</report>
+							<report>mailing-list</report>
+							<report>modules</report>
+							<report>plugin-management</report>
+							<report>plugins</report>
+							<report>project-team</report>
+							<report>scm</report>
 							<report>summary</report>
 						</reports>
 					</reportSet>

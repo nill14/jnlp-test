@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>jnlp-test-simple</artifactId>
 	<name>jnlp-simple</name>
@@ -12,10 +11,6 @@
 	</parent>
 
 	<properties>
-			<jnlpCodebase>${siteUrl}/jnlp-webstart-site/webstart</jnlpCodebase>
-<!-- 		<jnlpCodebase>file:///C:/dev/workspace/typesafe/jnlp-test/target/jnlp/</jnlpCodebase> -->
-		<!-- <jnlpCodebase>http://localhost:8080/</jnlpCodebase> -->
-		<!-- <jnlpCodebase>${project.url}/jnlp</jnlpCodebase> -->
 		<jnlpFile>test.jnlp</jnlpFile>
 	</properties>
 
@@ -23,7 +18,7 @@
 
 		<plugins>
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
+				<groupId>com.github.nill14</groupId>
 				<artifactId>webstart-maven-plugin</artifactId>
 				<version>1.0-beta-3</version>
 				<executions>
@@ -41,7 +36,7 @@
 					<workDirectory>${project.build.directory}/${project.build.finalName}</workDirectory>
 
 					<libPath>lib</libPath>
-					<codebase>${jnlpCodebase}</codebase>
+<!-- 					<codebase>${jnlpCodebase}</codebase> -->
 
 					<jnlp>
 						<inputTemplate>src/main/jnlp/template.vm</inputTemplate>
@@ -108,9 +103,9 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>me.jnlp-test</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>jnlp-test1</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${project.version}</version>
 			<scope>runtime</scope>
 		</dependency>
 	</dependencies>

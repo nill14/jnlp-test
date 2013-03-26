@@ -12,16 +12,13 @@
 	</parent>
 
 	<properties>
-		<!-- <jnlpCodebase>file:///C:/dev/workspace/typesafe/jnlp-test/target/jnlp/</jnlpCodebase> -->
-		<!-- <jnlpCodebase>http://localhost:8080/</jnlpCodebase> -->
-		<jnlpCodebase>${siteUrl}/jnlp-webstart-site/webstart</jnlpCodebase>
 	</properties>
 
 	<build>
 
 		<plugins>
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
+				<groupId>com.github.nill14</groupId>
 				<artifactId>webstart-maven-plugin</artifactId>
 				<version>1.0-beta-3</version>
 				<executions>
@@ -65,9 +62,8 @@
 						</jnlpFile>
 
 					</jnlpFiles>
-					
+
 					<libPath>lib</libPath>
-					<codebase>${jnlpCodebase}</codebase>
 
 					<sign>
 						<keystore>${basedir}/src/main/jnlp/testKeys</keystore>
@@ -75,6 +71,8 @@
 						<alias>jdc</alias>
 						<verify>true</verify>
 					</sign>
+
+					<outputJarVersions>false</outputJarVersions>
 
 					<!-- causes a version attribute to be output in each jar resource element, 
 						optional, default is false -->
@@ -130,15 +128,15 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>me.jnlp-test</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>jnlp-test1</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${project.version}</version>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
-			<groupId>me.jnlp-test</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>jnlp-test2</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${project.version}</version>
 			<scope>runtime</scope>
 		</dependency>
 
