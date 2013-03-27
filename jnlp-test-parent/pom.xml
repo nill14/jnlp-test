@@ -18,16 +18,26 @@
 	</properties>
 
 	<modules>
-		<module>project1</module>
-		<module>project2</module>
-		<module>jnlp-test-simple</module>
-		<module>jnlp-test-multi</module>
-		<module>jnlp-webstart-site</module>
+		<module>../jnlp-test-project1</module>
+		<module>../jnlp-test-project2</module>
+		<module>../jnlp-test-simple</module>
+		<module>../jnlp-test-multi</module>
+		<module>../jnlp-webstart-site</module>
 	</modules>
 
 	<scm>
 		<connection>scm:git:file://C:/dev/git/jnlp-test</connection>
 	</scm>
+
+	<profiles>
+		<profile>
+			<id>skip-maven-site</id>
+			<properties>
+				<maven.site.skip>true</maven.site.skip>
+				<maven.site.deploy.skip>true</maven.site.deploy.skip>
+			</properties>
+		</profile>
+	</profiles>
 
 
 	<build>
@@ -280,7 +290,7 @@
 	<distributionManagement>
 		<site>
 			<id>website</id>
-			<url>${siteUrl}</url>
+			<url>${siteUrl}/${project.artifactId}</url>
 		</site>
 	</distributionManagement>
 

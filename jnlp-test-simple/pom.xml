@@ -13,6 +13,9 @@
 
 	<properties>
 		<jnlpFile>test.jnlp</jnlpFile>
+
+		<maven.site.skip>true</maven.site.skip>
+		<maven.site.deploy.skip>true</maven.site.deploy.skip>
 	</properties>
 
 	<build>
@@ -50,6 +53,7 @@
 						<storepass>secret</storepass>
 						<alias>jdc</alias>
 						<verify>true</verify>
+						
 					</sign>
 
 					<!-- <outputJarVersions>false</outputJarVersions> -->
@@ -86,26 +90,11 @@
 
 	</build>
 	
-	
-	<reporting>
-		<plugins>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>webstart-maven-plugin</artifactId>
-				<version>1.0-beta-3</version>
-				<configuration>
-					<jnlpSourceDirectory>${project.build.directory}/${project.build.finalName}</jnlpSourceDirectory>
-					<siteJnlpFile>${jnlpFile}</siteJnlpFile>
-					<codebase>${jnlpCodebase}</codebase>
-				</configuration>
-			</plugin>
-		</plugins>
-	</reporting>
 
 	<dependencies>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>jnlp-test1</artifactId>
+			<artifactId>jnlp-test-project1</artifactId>
 			<version>${project.version}</version>
 			<scope>runtime</scope>
 		</dependency>

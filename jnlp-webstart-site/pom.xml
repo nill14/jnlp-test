@@ -12,7 +12,9 @@
 	</parent>
 
 	<properties>
-		<maven.site.skip>false</maven.site.skip>
+		<maven.site.chmod>false</maven.site.chmod>
+		<maven.site.skip>true</maven.site.skip>
+		<maven.site.deploy.skip>false</maven.site.deploy.skip>
 	</properties>
 
 	<build>
@@ -33,12 +35,12 @@
 							<artifactItems>
 								<artifactItem>
 									<groupId>${project.groupId}</groupId>
-									<artifactId>jnlp-test-simple</artifactId>
+									<artifactId>jnlp-test-multi</artifactId>
 									<version>${project.version}</version>
 									<type>zip</type>
-<!-- 									<classifier>webstart</classifier> -->
+									<classifier>webstart</classifier>
 									<overWrite>true</overWrite>
-									<outputDirectory>${project.build.directory}/site/webstart</outputDirectory>
+									<outputDirectory>${project.build.directory}/site</outputDirectory>
 								</artifactItem>
 							</artifactItems>
 							<overWriteReleases>false</overWriteReleases>
@@ -51,5 +53,11 @@
 		</plugins>
 	</build>
 
-
+	<distributionManagement>
+		<site>
+			<id>website</id>
+			<url>${siteUrl}</url>
+		</site>
+	</distributionManagement>
+	
 </project>
